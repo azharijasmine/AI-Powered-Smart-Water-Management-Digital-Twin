@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ── Favicon ── -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
+
+    <!-- ── Google Fonts ── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=JetBrains+Mono:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Smart Water Level Monitor</title>
+
+    <style>
+      /* ── PAGE-LEVEL BACKGROUND THEME ──────────────────────────
+         Matches the screenshot:
+         • Base: very soft blue-gray (#e8eef4 → #edf2f7)
+         • Top-left bloom: pale sky blue (rgba 186 230 255)
+         • Top-right bloom: soft indigo mist (rgba 199 210 254)
+         • Bottom-left bloom: gentle mint (rgba 187 247 208)
+         • Bottom-right bloom: pale violet (rgba 221 214 254)
+         • Centre bloom: near-white (rgba 255 255 255 .55) → clean cards
+         All blends use very low opacity so the overall feel stays
+         light, airy and almost white — exactly like the screenshot.
+      ────────────────────────────────────────────────────────── */
+
+      :root {
+        /* Override App.css --bg to match the screenshot exactly */
+        --bg: #e8eef5;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        min-height: 100%;
+        font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          Roboto, Oxygen, Ubuntu, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        /* ── Multi-layer gradient that recreates the screenshot background ── */
+        background-color: #e8eef5;
+        background-image:
+          /* Top-left: sky-blue bloom */
+          radial-gradient(
+            ellipse 70% 55% at 5% 0%,
+            rgba(186, 230, 253, 0.55) 0%,
+            transparent 65%
+          ),
+          /* Top-right: soft indigo bloom */
+          radial-gradient(
+            ellipse 55% 45% at 95% 0%,
+            rgba(199, 210, 254, 0.45) 0%,
+            transparent 60%
+          ),
+          /* Centre: near-white diffuse glow (keeps cards legible) */
+          radial-gradient(
+            ellipse 80% 60% at 50% 40%,
+            rgba(255, 255, 255, 0.55) 0%,
+            transparent 70%
+          ),
+          /* Bottom-left: mint-green accent */
+          radial-gradient(
+            ellipse 50% 40% at 0% 100%,
+            rgba(187, 247, 208, 0.38) 0%,
+            transparent 60%
+          ),
+          /* Bottom-right: pale violet accent */
+          radial-gradient(
+            ellipse 50% 40% at 100% 100%,
+            rgba(221, 214, 254, 0.35) 0%,
+            transparent 60%
+          );
+
+        /* Prevent background from tiling on very long pages */
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        color: #0f172a;
+      }
+
+      /* ── Root mount point ── */
+      #root {
+        min-height: 100vh;
+        isolation: isolate; /* new stacking context — keeps z-index sane */
+      }
+
+      /* ── Global scrollbar styling (matches the light theme) ── */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.45);
+        border-radius: 99px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(100, 116, 139, 0.65);
+      }
+
+      /* ── Selection colour ── */
+      ::selection {
+        background: rgba(59, 130, 246, 0.2);
+        color: #1e40af;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- Vite / React entry point — do NOT change this script tag -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
